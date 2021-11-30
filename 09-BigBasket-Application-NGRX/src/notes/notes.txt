@@ -1,0 +1,84 @@
+---------------------------------------------------
+NGRX Configuration for Angular Routing Application
+----------------------------------------------------
+
+Install NGRX Librarires
+------------------------------------------------
+npm install @ngrx/store
+npm install @ngrx/store-devtools
+npm install @ngrx/effects
+npm install @ngrx/schematics --save-dev
+
+configure @ngrx/schematics with Angular CLI
+-------------------------------------------
+	ng add @ngrx/schematics@latest
+
+Root (store , effect) (/src/app folder)
+---------------------
+ng generate @ngrx/schematics:store State --root --module app.module.ts
+ng generate @ngrx/schematics:effect Root --root --module app.module.ts --group
+
+products(actions , reducers , effects) (products folder)
+---------------------------------------
+ng g module products --route products --module app.module.ts
+
+ng generate @ngrx/schematics:store State --module products.module.ts
+ng generate @ngrx/schematics:effect product --module products.module.ts --group
+
+ng generate @ngrx/schematics:reducer product --group
+ng generate @ngrx/schematics:action product --group
+
+
+NOTE : change "reducers/index.ts" file with this for each module
+		import { environment } from '../../../environments/environment';
+
+----------------------------------------------------------------------------------
+Folder Structure
+----------------------------------------------------------------------------------
+App
+---
+ -> root
+		-> components
+			-> home
+			-> navbar 
+ -> products(module)
+		-> components
+		-> services
+		-> models
+		-> actions
+		-> reducers
+		-> effects
+
+
+State :
+{
+	product : {
+		loading:boolean,
+		products : [],
+		selectedProduct: {}
+		errorMessage : string
+	}
+}
+
+Actions
+--------
+Get all products -> 3 actions
+get a single product -> 3 actions
+Create product -> 3 actions
+Update Product -> 3 actions
+Delete Product -> 3 actions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
